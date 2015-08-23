@@ -4,7 +4,7 @@ import edu.arizona.sista.discourse.rstparser.RSTParser
 import edu.arizona.sista.processors._
 import edu.arizona.sista.processors.shallownlp.ShallowNLPProcessor
 import edu.arizona.sista.struct._
-import edu.stanford.nlp.parser.lexparser.LexicalizedParser
+import edu.stanford.nlp.parser.shiftreduce.ShiftReduceParser
 import edu.stanford.nlp.parser.common.{ParserAnnotations, ParserUtils}
 import edu.stanford.nlp.pipeline.{ParserAnnotatorUtils, StanfordCoreNLP}
 import java.util.Properties
@@ -35,12 +35,12 @@ class CoreNLPProcessor(internStrings:Boolean = true,
   // we maintain our own copy of a LexicalizedParser to control which sentences are parsed
   // the CoreNLP option parser.maxlen does not work well
   //
-  lazy val stanfordParser = mkLexicalizedParser
+  lazy val stanfordParser = mkShiftReduceParser
   lazy val gsf = mkGSF
   lazy val headFinder = new SemanticHeadFinder()
 
-  def mkLexicalizedParser: LexicalizedParser = {
-    val parser = LexicalizedParser.loadModel()
+  def mkShiftReduceParser: ShiftReduceParser = {
+    val parser = ShiftReduceParser.loadModel("edu/stanford/nlp/models/srparser/englishSR.ser.gz")
     parser
   }
 

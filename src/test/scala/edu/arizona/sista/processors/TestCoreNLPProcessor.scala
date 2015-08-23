@@ -182,6 +182,7 @@ class TestCoreNLPProcessor extends FlatSpec with Matchers {
 
   it should "run the constituent parser correctly" in {
     val doc = proc.mkDocumentFromSentences(List("John Doe went to China"), keepText = false)
+    proc.tagPartsOfSpeech(doc)
     proc.parse(doc)
     doc.clear()
 
