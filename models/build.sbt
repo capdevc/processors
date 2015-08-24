@@ -4,7 +4,7 @@ version := "5.4-SNAPSHOT"
 
 organization := "edu.arizona.sista"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 artifactName := { (sv: ScalaVersion, module: ModuleID, artifact: Artifact) =>
   s"processors_${sv.binary}-${module.revision}-${module.name}.${artifact.extension}"
